@@ -18,6 +18,13 @@ app.post("/", (req, res) => {
 
   const parsed = httpSignature.parseRequest(req);
 
+  const pub = fs.readFileSync(parsed.keyId, 'ascii');
+  if (!httpSignature.verifySignature(parsed, pub)) {
+    console.log("Sign parser");
+  } else {
+    console.log("Sign failed");
+  }
+
   console.log("parsed", parsed);
 
   switch (req.body.repo.slug) {

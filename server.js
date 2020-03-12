@@ -18,8 +18,8 @@ app.post("/", (req, res) => {
 
   const parsed = httpSignature.parseRequest(req);
 
-  const pub = parsed.keyId;
-  if (!httpSignature.verifySignature(parsed, pub)) {
+  console.log('parsed.keyId', parsed.keyId)
+  if (!httpSignature.verifySignature(parsed, 'pub')) {
     console.log("Sign parser");
   } else {
     console.log("Sign failed");

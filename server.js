@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const httpSignature = require("http-signature");
 
 const app = express();
 
@@ -14,6 +15,11 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
   console.log("Post request fired");
   console.log("Headers", req.headers);
+
+  const parsed = httpSignature.parseRequest(req);
+
+  console.log("parsed", parsed);
+
   switch (req.body.repo.slug) {
     case "nequid/drone-testt":
       return res.status(200).send({ status: "ok v11" });

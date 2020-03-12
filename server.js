@@ -1,23 +1,27 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+const express = require("express");
+const bodyParser = require("body-parser");
 
-const app = express()
+const app = express();
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-app.get('/',(req,res)=>{
-  console.log('Get request fired')
-  res.send({status: 'ok v11'})
-})
-
-app.post('/',(req,res)=>{
-  console.log('Post request fired')
-  console.log('Body',req.body)
-  res.send({status: 'ok v11'})
-})
-
-app.listen(4000, () => {
-  console.log('Server is listening on 4000')
+app.get("/", (req, res) => {
+  console.log("Get request fired");
+  res.send({ status: "ok v11" });
 });
 
+app.post("/", (req, res) => {
+  console.log("Post request fired");
+  console.log("Headers", req.headers);
+  switch (req.body.repo.slug) {
+    case "nequid/drone-testt":
+      return res.status(200).send({ status: "ok v11" });
+    default:
+      return res.status(204).status({ message: "not found" });
+  }
+});
+
+app.listen(4000, () => {
+  console.log("Server is listening on 4000");
+});

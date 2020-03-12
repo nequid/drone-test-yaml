@@ -18,10 +18,11 @@ app.post("/", (req, res) => {
 
   const parsed = httpSignature.parseRequest(req);
 
-  console.log('parsed', parsed)
-
+  console.log("parsed", parsed);
 
   console.log("parsed", parsed);
+
+  console.log("signature", parsed.params.signature.toString("base64"));
 
   switch (req.body.repo.slug) {
     case "nequid/drone-testt":

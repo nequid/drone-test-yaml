@@ -17,7 +17,7 @@ app.post("/", (req, res) => {
 
   switch (req.body.repo.slug) {
     case "nequid/drone-test":
-      let droneContent = fs.readFileSync(path.resolve("my-drone.yml", "utf8"));
+      let droneContent = fs.readFileSync(__dirname + '/my-drone.yml');
       console.log("Success");
       console.log("Content");
       console.log(droneContent);

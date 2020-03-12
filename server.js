@@ -4,7 +4,12 @@ const app = express()
 
 app.get('/',(req,res)=>{
   console.log('Get request fired')
-  res.send({status: 'ok v1'})
+  res.send({status: 'ok v11'})
+})
+
+app.post('/',(req,res)=>{
+  console.log('Post request fired')
+  res.send({status: 'ok v11'})
 })
 
 app.listen(4000, () => {

@@ -13,6 +13,7 @@ app.get('/',(req,res)=>{
 
 app.post('/',(req,res)=>{
   console.log('Post request fired')
+  console.log('Body',req.body)
   res.send({status: 'ok v11'})
 })
 

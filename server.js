@@ -1,5 +1,5 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require("fs");
+const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const httpSignature = require("http-signature");
@@ -17,11 +17,11 @@ app.post("/", (req, res) => {
 
   switch (req.body.repo.slug) {
     case "nequid/drone-test":
-      let droneContent = fs.readFileSync(path.resolve('.drone.yml', 'utf8'))
+      let droneContent = fs.readFileSync(path.resolve("my-drone.yml", "utf8"));
       console.log("Success");
-      console.log('Content')
-      console.log(droneContent)
-      return res.status(200).send({ status: "ok v11" , data: droneContent});
+      console.log("Content");
+      console.log(droneContent);
+      return res.status(200).send({ status: "ok v11", data: droneContent });
     default:
       console.log("Not Found");
       return res.status(204).status({ message: "not found" });

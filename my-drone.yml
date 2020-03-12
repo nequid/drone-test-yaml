@@ -3,8 +3,27 @@ type: docker
 name: default
 
 steps:
-  - name: wow
-    image: node
-    commands:
-      - echo "Naber lan yarram 2"
+  - name: Step 1 - Build Image
+    image: plugins/docker
+    settings:
+      repo: l4golas/service-pipeline
+      username:
+        from_secret: username
+      password:
+        from_secret: password
+      tags:
+        - ${DRONE_COMMIT_BRANCH}-${DRONE_COMMIT}
 
+---
+kind: secret
+name: username
+get:
+  path: pipeline
+  name: username
+
+---
+kind: secret
+name: password
+get:
+  path: pipeline
+  name: password

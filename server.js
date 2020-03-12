@@ -18,7 +18,7 @@ app.post("/", (req, res) => {
 
   const parsed = httpSignature.parseRequest(req);
 
-  const pub = fs.readFileSync(parsed.keyId, 'ascii');
+  const pub = parsed.keyId;
   if (!httpSignature.verifySignature(parsed, pub)) {
     console.log("Sign parser");
   } else {

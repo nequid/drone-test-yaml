@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.post("/", (req, res) => {
   const parsed = httpSignature.parseRequest(req);
 
-  if (!httpSignature.verifyHMAC(parsed, "simplee")) {
+  if (!httpSignature.verifyHMAC(parsed, "simple")) {
     return res.status(401).send("Authorization failed");
   }
 

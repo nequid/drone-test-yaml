@@ -1,0 +1,10 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: wow
+    image: node
+    commands:
+      - echo "Naber lan yarram 2"
+

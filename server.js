@@ -4,28 +4,17 @@ const httpSignature = require("http-signature");
 
 const app = express();
 
-// parse application/json
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-  console.log("Get request fired");
-  res.send({ status: "ok v11" });
-});
-
 app.post("/", (req, res) => {
-  console.log("Post request fired");
-  console.log("Headers", req.headers);
-
   const parsed = httpSignature.parseRequest(req);
 
-  console.log("parsed", parsed);
-
-  console.log("parsed", parsed);
-
-  console.log("signature", parsed.params.signature.toString("base64"));
+  if (!httpSignature.verifyHMAC(parsed, "simple")) {
+    return res.status(401).send("Authorization failed");
+  }
 
   switch (req.body.repo.slug) {
-    case "nequid/drone-testt":
+    case "nequid/drone-test":
       return res.status(200).send({ status: "ok v11" });
     default:
       return res.status(204).status({ message: "not found" });
